@@ -44,6 +44,14 @@ class Board
   end
 end
 
+class Player
+  attr_reader :sign
+
+  def initialize(sign)
+    @sign = sign
+  end
+end
+
 test = Board.new
 test.play(0, "X")
 test.play(4, "X")
