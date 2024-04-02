@@ -52,14 +52,36 @@ class Player
   end
 end
 
-test = Board.new
-test.play(0, "X")
-test.play(4, "X")
-test.play(5, "X")
-test.play(6, "X")
-test.play(2, "O")
-test.play(3, "O")
-test.play(8, "O")
-test.play(7, "O")
-test.play(1, "X")
-puts test.draw?
+def gameLoop
+  board = Board.new
+  player1 = Player.new("X")
+  player2 = Player.new("O")
+
+  board.printBoard
+
+  while true do
+    pos = gets.chomp.to_i
+    board.play(pos, player1.sign)
+    if board.draw?
+      break
+    end
+    if board.winner?(player1.sign)
+      break
+    end
+    board.printBoard
+
+    pos = gets.chomp.to_i
+    board.play(pos, player2.sign)
+    if board.draw?
+      break
+    end
+    if board.winner?(player2.sign)
+      break
+    end
+    board.printBoard
+  end
+
+  board.printBoard
+end
+
+gameLoop
